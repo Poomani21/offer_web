@@ -30,6 +30,8 @@ Route::group(['namespace' => '\LaraSnap\LaravelAdmin\Controllers','prefix' => 'a
         Route::get('/', 'DashboardController')->name('dashboard');
         /** DASHBOARD ROUTES **/
         
+       
+
         /** USER ROUTES **/
         Route::group(['prefix' => 'users', 'exculde' => ['users.filter', 'users.store', 'users.update', 'users.bulkdestroy', 'users.assignrole_store']], function(){
             Route::get('/','UserController@index')->name('users.index');
@@ -169,4 +171,29 @@ Route::group(['namespace' => '\LaraSnap\LaravelAdmin\Controllers','prefix' => 'a
     
 });
 
+
 /**** LARASNAP ROUTES END ****/
+
+
+/*** other routes**/
+Route::group(['namespace' => '\App\Http\Controllers','prefix' => 'admin', 'middleware' => ['web', 'auth', 'check-userstatus'], 'roles' => '' ], function(){
+	
+    Route::group(['middleware' => ['check-roles'] ], function(){
+
+ /* Employee Routs*/
+ Route::group(['prefix' => 'employee', 'exculde' => ['employee.filter', 'employee.store', 'employee.update']], function(){
+    Route::get('/','EmployeeController@index')->name('employee.index');
+    Route::post('/','EmployeeController@index')->name('employee.filter');
+    Route::get('create','EmployeeController@create')->name('employee.create');
+    Route::post('create','EmployeeController@store')->name('employee.store');
+    Route::get('{employee}/edit','EmployeeController@edit')->name('employee.edit');
+    Route::put('{employee}','EmployeeController@update')->name('employee.update');
+    Route::get('{employee}','EmployeeController@show')->name('employee.show');
+    Route::get('{employee}/delete','EmployeeController@destroy')->name('employee.destroy');
+
+});
+
+
+/* Employee Routs*/
+    });
+});
