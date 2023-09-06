@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('agency_name')->nullable();
             $table->string('type')->nullable();
             $table->string('emp_id')->nullable();
+            $table->string('password')->nullable();
             $table->timestamps();
 
         });

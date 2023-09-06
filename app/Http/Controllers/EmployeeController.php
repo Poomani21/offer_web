@@ -31,8 +31,28 @@ class EmployeeController extends Controller
         $employees->city = $request->city;
         $employees->email = $request->email;
         $employees->agency_name = $request->agency_name;
-        $employees->emp_id = $request->emp_id;
-        $employees->type = $request->type;        
+        if($request->type =="Employee")
+        {
+            $employees->emp_id = $request->emp_id;
+        }
+        elseif($request->type =="Director"){
+            
+            $employees->emp_id = $request->emp_id;
+        }
+        elseif($request->type =="Distributer")
+        {
+            $employees->emp_id = $request->emp_id;
+        }
+        elseif($request->type =="ModernTrade")
+        {
+            $employees->emp_id = $request->emp_id;
+        }
+      
+        $employees->type = $request->type;
+
+        $passwords="12345678"; 
+        $password = password_hash($passwords, PASSWORD_DEFAULT); 
+        $employees->password= $password;    
         $employees->save();
        
 
