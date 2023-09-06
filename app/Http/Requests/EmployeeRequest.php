@@ -21,15 +21,32 @@ class EmployeeRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'name'=>'required',
-            'email'=>'required|unique:employee,email',
-            'phone_number'=>'required|unique:employee,phone_number',
-            'type'=>'required',
-            'city'=>'required',
-            'agency_name'=>'required',
+        
+        if(request()->type == "edit"){
+            $user_id = request()->emp_id;
 
-        ];
+            return [
+                'name'=>'required',
+                'email'=>'required|unique:employee,email,'.$user_id,
+                'phone_number'=>'required|min:10|max:10|unique:employee,phone_number,'.$user_id,
+                'type'=>'required',
+                'city'=>'required',
+                'agency_name'=>'required',
+    
+            ];
+
+        }else{
+            return [
+                'name'=>'required',
+                'email'=>'required|unique:employee,email',
+                'phone_number'=>'required|unique:employee,phone_number|min:10|max:10',
+                'type'=>'required',
+                'city'=>'required',
+                'agency_name'=>'required',
+    
+            ];
+        }
+        
     }
     public function messages()
     {

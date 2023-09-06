@@ -65,7 +65,7 @@ class EmployeeController extends Controller
         return view('employee.edit', compact('employees'));
     }
 
-    public function update(Request $request, $id)
+    public function update(EmployeeRequest $request, $id)
     {
         $employees = Employee::find($id);
         $employees->name = $request->name;

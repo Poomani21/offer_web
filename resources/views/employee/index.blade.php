@@ -57,6 +57,7 @@
                                     @method('GET')                                  
                                     <a href="{{route('employee.edit',$employee->id)}}" title="Edit"><button class="btn btn-primary btn-sm" type="button"><i aria-hidden="true" class="fa fa-pencil-square-o"></i></button></a>                                
                                     <a href="{{route('employee.show',$employee->id)}}" title="show"><button class="btn btn-primary btn-sm" type="button"><i aria-hidden="true" class="fa fa-eye"></i></button></a>                                
+                                    <a href="{{route('employee.imageupload',$employee->id)}}" title="Image upload"><button class="btn btn-primary btn-sm" type="button"><i aria-hidden="true" class="fa fa-image"></i></button></a>
                                     <a onclick="deleteModel_departments({{$employee->id}})" title="Delete "><button data-toggle="modal" data-target="#small_departments" class="btn btn-danger btn-sm" type="button"><i aria-hidden="true" class="fa fa-trash"></i></button></a>
                                 </form>
                               </td>

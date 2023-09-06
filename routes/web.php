@@ -180,7 +180,7 @@ Route::group(['namespace' => '\App\Http\Controllers','prefix' => 'admin', 'middl
 	
     Route::group(['middleware' => ['check-roles'] ], function(){
 
- /* Employee Routs*/
+ /* Employee Routs starts*/
  Route::group(['prefix' => 'employee', 'exculde' => ['employee.filter', 'employee.store', 'employee.update']], function(){
     Route::get('/','EmployeeController@index')->name('employee.index');
     Route::post('/','EmployeeController@index')->name('employee.filter');
@@ -190,10 +190,15 @@ Route::group(['namespace' => '\App\Http\Controllers','prefix' => 'admin', 'middl
     Route::put('{employee}','EmployeeController@update')->name('employee.update');
     Route::get('{employee}','EmployeeController@show')->name('employee.show');
     Route::get('{employee}/delete','EmployeeController@destroy')->name('employee.destroy');
-
 });
-
-
-/* Employee Routs*/
+/* Employee Routs ends*/
+ /* Image Routs starts*/
+ Route::group(['prefix' => 'image', 'exculde' => ['image.filter', 'image.store', 'image.update']], function(){
+    Route::get('{image}/imageupload','ImageController@imageupload')->name('employee.imageupload');
+    Route::post('/','ImageController@index')->name('image.filter');
+    Route::post('store','ImageController@store')->name('image.store');
+    Route::get('{image}/destroy','ImageController@destroy')->name('image.destroy');
+});
+/* image Routs ends*/
     });
 });
