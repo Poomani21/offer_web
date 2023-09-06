@@ -88,7 +88,6 @@
                                 <label for="type" name="type" class="control-label">Type<small class="text-danger required">*</small></label>
                                     <select id="type" name="type" class="form-control">
                                         <option value="">Select Type</option>
-                                        <option value="Director" @if($employees->type=="Director") selected @endif>Director</option>
                                         <option value="Distributer"@if($employees->type=="Distributer") selected @endif>Distributer</option>
                                         <option value="Employee"@if($employees->type=="Employee") selected @endif>Employee</option>
                                         <option value="ModernTrade"@if($employees->type=="ModernTrade") selected @endif>ModernTrade</option>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\EmployeeRequest;
 use App\Models\Employee;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
@@ -33,19 +34,40 @@ class EmployeeController extends Controller
         $employees->agency_name = $request->agency_name;
         if($request->type =="Employee")
         {
-            $employees->emp_id = $request->emp_id;
-        }
-        elseif($request->type =="Director"){
+            $emp_id = Employee::where('emp_id','LIKE','%T2G-EMP-%')->latest()->first();
+            if($emp_id == null){
+                $employees->emp_id = "T2G-EMP-001";
+            }else{
+                $id_increment = substr($emp_id->emp_id,-3);
+                $value = sprintf("%03d",++$id_increment);
+                $employees->emp_id = "T2G-EMP-".$value;
+            }
             
-            $employees->emp_id = $request->emp_id;
         }
+       
         elseif($request->type =="Distributer")
         {
-            $employees->emp_id = $request->emp_id;
+            $emp_id = Employee::where('emp_id','LIKE','%T2G-DT-%')->latest()->first();
+            if($emp_id == null){
+                $employees->emp_id = "T2G-DT-001";
+            }else{
+                $id_increment = substr($emp_id->emp_id,-3);
+                $value = sprintf("%03d",++$id_increment);
+                $employees->emp_id = "T2G-DT-".$value;
+            }
+           
         }
         elseif($request->type =="ModernTrade")
         {
-            $employees->emp_id = $request->emp_id;
+            $emp_id = Employee::where('emp_id','LIKE','%T2G-MT-%')->latest()->first();
+            if($emp_id == null){
+                $employees->emp_id = "T2G-MT-001";
+            }else{
+                $id_increment = substr($emp_id->emp_id,-3);
+                $value = sprintf("%03d",++$id_increment);
+                $employees->emp_id = "T2G-MT-".$value;
+            }
+          
         }
       
         $employees->type = $request->type;
@@ -73,7 +95,6 @@ class EmployeeController extends Controller
         $employees->city = $request->city;
         $employees->email = $request->email;
         $employees->agency_name = $request->agency_name;
-        $employees->emp_id = $request->emp_id;
         $employees->type = $request->type;    
         $employees->update();
         

@@ -87,7 +87,6 @@
                                 <label for="type" name="type" class="control-label">Type<small class="text-danger required">*</small></label>
                                     <select id="type" name="type" class="form-control">
                                         <option value="">Select Type</option>
-                                        <option value="Director">Director</option>
                                         <option value="Distributer">Distributer</option>
                                         <option value="Employee">Employee</option>
                                         <option value="ModernTrade">ModernTrade</option>
