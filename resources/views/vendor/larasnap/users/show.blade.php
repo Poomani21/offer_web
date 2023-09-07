@@ -26,10 +26,8 @@
 			  </table>
 			  <strong class="table-heading">ADDRESS INFORMATION</strong>
 			  <table class="details mb-10">
-			  <tr><td>Address</td><td>{{ $user->userProfile ? $user->userProfile->address : '- NA -' }}</td></tr>
-			  <tr><td>State</td><td>{{ $user->userProfile ? $user->userProfile->state : '- NA -' }}</td></tr>
+			  <tr><td>Agency Name</td><td>{{ $user->userProfile ? $user->userProfile->agency_name : '- NA -' }}</td></tr>
 			  <tr><td>City</td><td>{{ $user->userProfile ? $user->userProfile->city : '- NA -' }}</td></tr>
-			  <tr><td>Zip Code</td><td>{{ $user->userProfile ? $user->userProfile->pincode : '- NA -' }}</td></tr>
 			  </table>
 			  <table class="details">
 			  <tr><td><strong>STATUS</strong></td><td>{{ $user->status_info }}</td></tr>

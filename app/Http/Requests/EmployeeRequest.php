@@ -22,7 +22,7 @@ class EmployeeRequest extends FormRequest
     public function rules(): array
     {
         
-        if(request()->type == "edit"){
+        if(request()->type1 == "edit"){
             $user_id = request()->emp_id;
 
             return [

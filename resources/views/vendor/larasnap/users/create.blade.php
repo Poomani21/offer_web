@@ -54,35 +54,14 @@
 							@enderror 
 						</div>
 					</div>
+					
+					
+					
 					<div class="col-md-4">
 						<div class="form-group">
-							<label for="password" class="control-label">Password<small class="text-danger required">*</small></label> 
-							<input name="password" type="password" id="password" class="form-control" value="{{ old('password') }}">
-							@error('password')
-							 <span class="text-danger">{{ $message }}</span>
-							@enderror 							
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="form-group">
-							<label for="password-confirmation" class="control-label">Confirm Password<small class="text-danger required">*</small></label> 
-							<input name="password_confirmation" type="password" id="password-confirmation" class="form-control">
-						</div>
-					</div>
-					<div class="col-md-12">
-						<div class="form-group">
-							<label for="address" class="control-label">Address<small class="text-danger required">*</small></label>
-							<textarea name="address" class="form-control" id="address">{{ old('address') }}</textarea>
-							@error('address')
-							 <span class="text-danger">{{ $message }}</span>
-							@enderror 								
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="form-group">
-							<label for="state" class="control-label">State<small class="text-danger required">*</small></label> 
-							<input name="state" type="text" id="state" class="form-control" value="{{ old('state') }}">
-							@error('state')
+							<label for="state" class="control-label">Agency Name<small class="text-danger required">*</small></label> 
+							<input name="agency_name" type="text" id="agency_name" class="form-control" value="{{ old('agency_name') }}">
+							@error('agency_name')
 							 <span class="text-danger">{{ $message }}</span>
 							@enderror 							
 						</div>
@@ -97,14 +76,19 @@
 						</div>
 					</div>
 					<div class="col-md-4">
-						<div class="form-group">
-							<label for="pincode" class="control-label">Zip Code<small class="text-danger required">*</small></label> 
-							<input name="pincode" type="number" id="pincode" class="form-control" value="{{ old('pincode') }}" min="0">
-							@error('pincode')
-							 <span class="text-danger">{{ $message }}</span>
-							@enderror 								
-						</div>
-					</div>
+                                <div class="form-group">
+                                <label for="roles" class="control-label">Type<small class="text-danger required">*</small></label>
+                                    <select id="roles" name="roles" class="form-control">
+                                        <option value="">Select Type</option>
+                                        <option value="distributer">Distributer</option>
+                                        <option value="employee">Employee</option>
+                                        <option value="moderntrade">ModernTrade</option>
+                                    </select>
+                                    @error('roles')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                    </div>
 					<div class="col-md-4">
 						<div class="form-group">
 							<label for="user_photo" class="control-label">Profile Picture</label> 

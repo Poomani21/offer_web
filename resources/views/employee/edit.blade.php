@@ -99,7 +99,7 @@
                                 </div>
                             </div>
 
-                        <input type="hidden" name="type" value="edit">
+                        <input type="hidden" name="type1" value="edit">
                         <input type="hidden" name="emp_id" value="{{$employees->id}}" >
                         
                             <div class="col-md-12 no-label">
