@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,24 +28,24 @@ Route::group(['namespace' => '\LaraSnap\LaravelAdmin\Controllers','prefix' => 'a
     Route::group(['middleware' => ['check-roles'] ], function(){
         
         /** DASHBOARD ROUTES **/
-        Route::get('/', 'DashboardController')->name('dashboard');
+        Route::get('/', [App\Http\Controllers\DashboardController::class,'__invoke'])->name('dashboard');
         /** DASHBOARD ROUTES **/
         
        
 
         /** USER ROUTES **/
         Route::group(['prefix' => 'users', 'exculde' => ['users.filter', 'users.store', 'users.update', 'users.bulkdestroy', 'users.assignrole_store']], function(){
-            Route::get('/','UserController@index')->name('users.index');
-            Route::post('/','UserController@index')->name('users.filter');
-            Route::get('create','UserController@create')->name('users.create');
-            Route::post('create','UserController@store')->name('users.store');
-            Route::get('{user}/edit','UserController@edit')->name('users.edit');
-            Route::put('{user}','UserController@update')->name('users.update');
-            Route::get('{user}','UserController@show')->name('users.show');
-            Route::delete('{user}','UserController@destroy')->name('users.destroy');
-            Route::delete('/','UserController@bulkdestroy')->name('users.bulkdestroy');
-            Route::get('{user}/roles','UserController@assignRoleCreate')->name('users.assignrole_create');
-            Route::post('{user}/roles','UserController@assignRoleStore')->name('users.assignrole_store');
+            Route::get('/',[App\Http\Controllers\User\UserController::class, 'index'])->name('users.index');
+            Route::post('/',[App\Http\Controllers\User\UserController::class, 'index'])->name('users.filter');
+            Route::get('create',[App\Http\Controllers\User\UserController::class, 'create'])->name('users.create');
+            Route::post('create',[App\Http\Controllers\User\UserController::class, 'store'])->name('users.store');
+            Route::get('{user}/edit',[App\Http\Controllers\User\UserController::class, 'edit'])->name('users.edit');
+            Route::put('{user}',[App\Http\Controllers\User\UserController::class, 'update'])->name('users.update');
+            Route::get('{user}',[App\Http\Controllers\User\UserController::class, 'show'])->name('users.show');
+            Route::delete('{user}',[App\Http\Controllers\User\UserController::class, 'destroy'])->name('users.destroy');
+            Route::delete('/',[App\Http\Controllers\User\UserController::class, 'bulkdestroy'])->name('users.bulkdestroy');
+            Route::get('{user}/roles',[App\Http\Controllers\User\UserController::class, 'assignRoleCreate'])->name('users.assignrole_create');
+            Route::post('{user}/roles',[App\Http\Controllers\User\UserController::class, 'assignRoleStore'])->name('users.assignrole_store');
         });
         /** USER ROUTES **/
         
