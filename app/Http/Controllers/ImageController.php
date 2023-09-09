@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Employee;
 use App\Models\EmployeeImages;
 use App\Models\Image;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ImageController extends Controller
 {
     public function imageupload(Request $request,$id){
         try{
-            $employee = Employee::find($id);
+            $employee = User::find($id);
             $employeeImages = EmployeeImages::with('images')->where('employee_id',$id)->orderBy('id','DESC')->get();
             return view('image.image', compact('employee','employeeImages'));
         }catch (\Exception $e) {
@@ -39,6 +40,7 @@ class ImageController extends Controller
             $image = new EmployeeImages();
             $image->employee_id = $request->emp_id;
             $image->image_id = $data->id;
+            $image->image_name = $fileName;
             $image->save();
         }
         return redirect()->back()->withSuccess(' Image added successfully.');

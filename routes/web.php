@@ -195,7 +195,7 @@ Route::group(['namespace' => '\App\Http\Controllers','prefix' => 'admin', 'middl
 /* Employee Routs ends*/
  /* Image Routs starts*/
  Route::group(['prefix' => 'image', 'exculde' => ['image.filter', 'image.store', 'image.update']], function(){
-    Route::get('{image}/imageupload','ImageController@imageupload')->name('employee.imageupload');
+    Route::get('{image}/imageupload','ImageController@imageupload')->name('imageupload');
     Route::post('/','ImageController@index')->name('image.filter');
     Route::post('store','ImageController@store')->name('image.store');
     Route::get('{image}/destroy','ImageController@destroy')->name('image.destroy');
