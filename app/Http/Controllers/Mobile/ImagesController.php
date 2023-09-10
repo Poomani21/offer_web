@@ -16,9 +16,9 @@ class ImagesController extends Controller
         $imagesList = EmployeeImages::with('images')->where('employee_id',$userId)->get();
         if (count($imagesList) > 0) {
             $Images = ImageCollection::collection($imagesList);
-            return response()->json(['message' => 'My Profile Details', 'images' => $Images]);
+            return response()->json(['message' => 'Images', 'images' => $Images]);
         } else {
-            return response()->json(['message' => 'Unauthorized User']);
+            return response()->json(['message' => 'No data']);
         }
     }
 }
