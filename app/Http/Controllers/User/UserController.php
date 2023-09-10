@@ -60,7 +60,11 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {		
+        // dd($request->all());
 		$user = $this->userService->store($request);
+        $user = User::find($user->id);
+        $user->status = $request->status;
+        $user->save();
         $user = $this->userService->assignRoleStore($request,$user->id);
         
 		return redirect()->route('users.index')->withSuccess('User successfully created.');
@@ -97,6 +101,9 @@ class UserController extends Controller
     {
 		try {
 			$user = $this->userModel::findOrFail($id);
+           
+            $roles  = $this->getAllRoles();
+            // dd($roles);
             //If 'Super Admin Role' is added on the config & if the user has 'Super Admin Role', show the edit screen only if the logged in user has 'Super Admin Role'
             $superAdminRole = config('larasnap.superadmin_role');
             if(isset($superAdminRole) && !empty($superAdminRole) && $user->roles->contains('name', $superAdminRole) && !userHasRole($superAdminRole)){
@@ -105,7 +112,7 @@ class UserController extends Controller
 		}catch (ModelNotFoundException $exception) {
 			return redirect()->route('users.index')->withError('User not found by ID ' .$id);
 		}
-        return view('larasnap::users.edit', compact('user'));
+        return view('larasnap::users.edit', compact('user','roles'));
     }
 
     /**
@@ -119,6 +126,8 @@ class UserController extends Controller
     {
         try {
             $user = $this->userModel::findOrFail($id);
+            $user->status = $request->status;
+            $user->update();
             $this->userService->update($request, $id, $user);
             $listPageURL = getPreviousListPageURL('users') ?? route('users.index'); 
 

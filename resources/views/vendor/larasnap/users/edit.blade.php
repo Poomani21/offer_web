@@ -76,21 +76,7 @@
 							@enderror 								
 						</div>
 					</div>
-					<div class="col-md-4">
-                                <div class="form-group">
-                                <label for="roles"  class="control-label">Type<small class="text-danger required">*</small></label>
-                                    <select id="roles" name="roles" class="form-control">
-                                        <option value="">Select Type</option>
-                                        <option value="distributer"@if($user->userProfile->role=="distributer") selected @endif>Distributer</option>
-                                        <option value="employee"@if($user->userProfile->role=="employee") selected @endif>Employee</option>
-                                        <option value="moderntrade"@if($user->userProfile->role=="moderntrade") selected @endif>ModernTrade</option>
-                                    
-                                    </select>
-                                    @error('roles')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
+					
 					<div class="col-md-4">
 						<div class="">
 							<label for="user_photo" class="control-label">Profile Picture</label> 

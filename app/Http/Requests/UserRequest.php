@@ -42,7 +42,7 @@ class UserRequest extends FormRequest
                 'required', 'email:rfc,dns', Rule::unique((new $userModel)->getTable())->ignore($this->route()->user ?? null)
             ],
 			'mobile_no' => [
-                'required','numeric', 'regex:/^[1-9]{1}[0-9]+/', 'unique:userprofiles,mobile_no,'.$this->route()->user.',user_id'
+                'required','numeric', 'max:10','min:10','regex:/^[1-9]{1}[0-9]+/', 'unique:userprofiles,mobile_no,'.$this->route()->user.',user_id'
             ],
 			// 'address' => [
             //     'required'
@@ -50,12 +50,12 @@ class UserRequest extends FormRequest
 			'city' => [
                 'required', 'alpha_spaces'
             ],
-			// 'roles' => [
-            //     'required',
-            // ],
+			'roles' => [
+                'required',
+            ],
 			// 'pincode' => [
             //     'required', 'size:'.$zipCodeSize,
-            // ],
+            // ],ss
 			'user_photo' => [
                 'nullable','mimes:jpg,jpeg,png','max:1024'
             ],
