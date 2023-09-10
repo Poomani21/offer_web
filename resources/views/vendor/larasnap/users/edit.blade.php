@@ -49,7 +49,7 @@
 					<div class="col-md-4">
 						<div class="form-group">
 							<label for="mobile-no" class="control-label">Mobile No<small class="text-danger required">*</small></label>
-							<input name="mobile_no" type="number" id="mobile-no" class="form-control" min="0" value="{{ old('mobile_no', $user->userProfile ? $user->userProfile->mobile_no : '') }}">
+							<input name="mobile_no" type="number" id="mobile-no" class="form-control" onKeyPress="if(this.value.length==10) return false;" value="{{ old('mobile_no', $user->userProfile ? $user->userProfile->mobile_no : '') }}">
 							@error('mobile_no')
 							 <span class="text-danger">{{ $message }}</span>
 							@enderror 
