@@ -47,9 +47,11 @@ class LaraSnapSeeder extends Seeder
         if(!$role){
             $role = new Role;
             $role->name = 'super-admin';
-            $role->label = 'Super Admin';
+            $role->label = 'Director';
             $role->save();
         }
+
+       
         
         //User Role Mapping Seed
         $user->roles()->detach();
@@ -70,9 +72,9 @@ class LaraSnapSeeder extends Seeder
         $module3->label = 'Role Management';
         $module3->save();
         
-        $module4 = new Module;
-        $module4->label = 'Permission Management';
-        $module4->save();
+        // $module4 = new Module;
+        // $module4->label = 'Permission Management';
+        // $module4->save();
         
         $module5 = new Module;
         $module5->label = 'Screen Management';
@@ -86,17 +88,17 @@ class LaraSnapSeeder extends Seeder
         $module7->label = 'Menu Management';
         $module7->save();  
 
-        $module8 = new Module;
-        $module8->label = 'Category Management';
-        $module8->save(); 
+        // $module8 = new Module;
+        // $module8->label = 'Category Management';
+        // $module8->save(); 
         
         $module9 = new Module;
         $module9->label = 'Settings';
         $module9->save(); 
 
-        $module10 = new Module;
-        $module10->label = 'Documentation';
-        $module10->save();         
+        // $module10 = new Module;
+        // $module10->label = 'Documentation';
+        // $module10->save();         
         
         //Screen Seed & Role Screen Mapping Seed
         Screen::whereIn('name', ['dashboard', 'users.index', 'users.create', 'users.edit', 'users.show', 'users.destroy', 'users.assignrole_create', 'roles.index', 'roles.create', 'roles.edit', 'roles.destroy', 'roles.assignpermission_create', 'roles.assignscreen_create', 'permissions.index', 'permissions.create', 'permissions.edit', 'permissions.destroy', 'screens.index', 'screens.create', 'screens.edit', 'screens.destroy', 'screens.assignrole_create', 'modules.index', 'modules.create', 'modules.edit','modules.destroy', 'menus.index', 'menus.create', 'menus.edit', 'menus.destroy', 'menus.builder', 'settings.create', 'docs.index', 'docs.icons'])->delete();
@@ -117,10 +119,10 @@ class LaraSnapSeeder extends Seeder
             ['name' => 'roles.destroy','label' => 'Role Delete', 'module_id' => $module3->id],
             ['name' => 'roles.assignpermission_create','label' => 'Role Assign Permission', 'module_id' => $module3->id],
             ['name' => 'roles.assignscreen_create','label' => 'Role Assign Screen', 'module_id' => $module3->id],
-            ['name' => 'permissions.index','label' => 'Permission List', 'module_id' => $module4->id],
-            ['name' => 'permissions.create','label' => 'Permission Create', 'module_id' => $module4->id],
-            ['name' => 'permissions.edit','label' => 'Permission Edit', 'module_id' => $module4->id],
-            ['name' => 'permissions.destroy','label' => 'Permission Delete', 'module_id' => $module4->id],
+            // ['name' => 'permissions.index','label' => 'Permission List', 'module_id' => $module4->id],
+            // ['name' => 'permissions.create','label' => 'Permission Create', 'module_id' => $module4->id],
+            // ['name' => 'permissions.edit','label' => 'Permission Edit', 'module_id' => $module4->id],
+            // ['name' => 'permissions.destroy','label' => 'Permission Delete', 'module_id' => $module4->id],
             ['name' => 'screens.index','label' => 'Screen List', 'module_id' => $module5->id],
             ['name' => 'screens.create','label' => 'Screen Create', 'module_id' => $module5->id],
             ['name' => 'screens.edit','label' => 'Screen Edit', 'module_id' => $module5->id],
@@ -135,17 +137,17 @@ class LaraSnapSeeder extends Seeder
             ['name' => 'menus.edit','label' => 'Menu Edit', 'module_id' => $module7->id],
             ['name' => 'menus.destroy','label' => 'Menu Delete', 'module_id' => $module7->id],
             ['name' => 'menus.builder','label' => 'Menu-Builder', 'module_id' => $module7->id],
-            ['name' => 'p_categories.index','label' => 'Parent Category List', 'module_id' => $module8->id],
-            ['name' => 'p_categories.create','label' => 'Parent Category Create', 'module_id' => $module8->id],
-            ['name' => 'p_categories.edit','label' => 'Parent Category Edit', 'module_id' => $module8->id],
-            ['name' => 'p_categories.destroy','label' => 'Parent Category Delete', 'module_id' => $module8->id],
-            ['name' => 'categories.index','label' => 'Category List', 'module_id' => $module8->id],
-            ['name' => 'categories.create','label' => 'Category Create', 'module_id' => $module8->id],
-            ['name' => 'categories.edit','label' => 'Category Edit', 'module_id' => $module8->id],
-            ['name' => 'categories.destroy','label' => 'Category Delete', 'module_id' => $module8->id],
+            // ['name' => 'p_categories.index','label' => 'Parent Category List', 'module_id' => $module8->id],
+            // ['name' => 'p_categories.create','label' => 'Parent Category Create', 'module_id' => $module8->id],
+            // ['name' => 'p_categories.edit','label' => 'Parent Category Edit', 'module_id' => $module8->id],
+            // ['name' => 'p_categories.destroy','label' => 'Parent Category Delete', 'module_id' => $module8->id],
+            // ['name' => 'categories.index','label' => 'Category List', 'module_id' => $module8->id],
+            // ['name' => 'categories.create','label' => 'Category Create', 'module_id' => $module8->id],
+            // ['name' => 'categories.edit','label' => 'Category Edit', 'module_id' => $module8->id],
+            // ['name' => 'categories.destroy','label' => 'Category Delete', 'module_id' => $module8->id],
             ['name' => 'settings.create','label' => 'Settings', 'module_id' => $module9->id],
-            ['name' => 'docs.index','label' => 'Document', 'module_id' => $module10->id],
-            ['name' => 'docs.icons','label' => 'Icons', 'module_id' => $module10->id],
+            // ['name' => 'docs.index','label' => 'Document', 'module_id' => $module10->id],
+            // ['name' => 'docs.icons','label' => 'Icons', 'module_id' => $module10->id],
         ];
         
         foreach ($screens as $screen){
@@ -158,7 +160,7 @@ class LaraSnapSeeder extends Seeder
         if(!$menu){
             $menu = new Menu;
             $menu->name  = 'admin';
-            $menu->label = 'Admin';
+            $menu->label = 'Director';
             $menu->save();
             
             $menuItem1 = new MenuItem;
@@ -182,12 +184,12 @@ class LaraSnapSeeder extends Seeder
             $menuItem3->target = "_self";
             $menuItem3->route  = "roles.index";
 
-            $menuItem4 = new MenuItem;
-            $menuItem4->title  = "Permissions Management";
-            $menuItem4->icon   = "fa-lock";
-            $menuItem4->order  = 4;
-            $menuItem4->target = "_self";
-            $menuItem4->route  = "permissions.index";
+            // $menuItem4 = new MenuItem;
+            // $menuItem4->title  = "Permissions Management";
+            // $menuItem4->icon   = "fa-lock";
+            // $menuItem4->order  = 4;
+            // $menuItem4->target = "_self";
+            // $menuItem4->route  = "permissions.index";
 
             $menuItem5 = new MenuItem;
             $menuItem5->title  = "Screens Management";
@@ -203,12 +205,12 @@ class LaraSnapSeeder extends Seeder
             $menuItem6->target = "_self";
             $menuItem6->route  = "menus.index";
 
-            $menuItem7 = new MenuItem;
-            $menuItem7->title  = "Category Management";
-            $menuItem7->icon   = "fa-list";
-            $menuItem7->order  = 7;
-            $menuItem7->target = "_self";
-            $menuItem7->route  = "p_categories.index";
+            // $menuItem7 = new MenuItem;
+            // $menuItem7->title  = "Category Management";
+            // $menuItem7->icon   = "fa-list";
+            // $menuItem7->order  = 7;
+            // $menuItem7->target = "_self";
+            // $menuItem7->route  = "p_categories.index";
             
             $menuItem8 = new MenuItem;
             $menuItem8->title  = "Settings";
@@ -217,14 +219,16 @@ class LaraSnapSeeder extends Seeder
             $menuItem8->target = "_self";
             $menuItem8->route  = "settings.create";
             
-            $menuItem9 = new MenuItem;
-            $menuItem9->title  = "User Guide";
-            $menuItem9->icon   = "fa-book";
-            $menuItem9->order  = 9;
-            $menuItem9->target = "_self";
-            $menuItem9->route  = "docs.index";
+            // $menuItem9 = new MenuItem;
+            // $menuItem9->title  = "User Guide";
+            // $menuItem9->icon   = "fa-book";
+            // $menuItem9->order  = 9;
+            // $menuItem9->target = "_self";
+            // $menuItem9->route  = "docs.index";
             
-            $menu = $menu->items()->saveMany([$menuItem1, $menuItem2, $menuItem3, $menuItem4, $menuItem5, $menuItem6, $menuItem7, $menuItem8, $menuItem9]);
+            $menu = $menu->items()->saveMany([$menuItem1, $menuItem2, $menuItem3, $menuItem5, $menuItem6, $menuItem8]);
+            // $menu = $menu->items()->saveMany([$menuItem1, $menuItem2, $menuItem3, $menuItem4, $menuItem5, $menuItem6, $menuItem7, $menuItem8, $menuItem9]);
+
         }
         
         //Setting Seed

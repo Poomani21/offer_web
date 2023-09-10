@@ -50,9 +50,9 @@ class UserRequest extends FormRequest
 			'city' => [
                 'required', 'alpha_spaces'
             ],
-			'roles' => [
-                'required',
-            ],
+			// 'roles' => [
+            //     'required',
+            // ],
 			// 'pincode' => [
             //     'required', 'size:'.$zipCodeSize,
             // ],ss
@@ -62,9 +62,9 @@ class UserRequest extends FormRequest
             'agency_name'=> [
                 'required'
             ],
-            'roles'=>[
-                'required'
-            ]
+            // 'roles'=>[
+            //     'required'
+            // ]
         ];
     }
     
