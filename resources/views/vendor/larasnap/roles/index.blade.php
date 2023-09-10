@@ -48,9 +48,9 @@
                                @canAccess('roles.edit')
 							  <a href="{{ route('roles.edit', $role->id) }}" title="Edit Role"><button class="btn btn-primary btn-sm" type="button"><i aria-hidden="true" class="fa fa-pencil-square-o"></i></button></a>
                                @endcanAccess
-                               @canAccess('roles.assignpermission_create')
+                               <!-- @canAccess('roles.assignpermission_create')
 							  <a href="{{ route('roles.assignpermission_create', $role->id) }}" title="Assign Permissions"><button class="btn btn-success btn-sm" type="button"><i aria-hidden="true" class="fa fa-key"></i></button></a>
-                               @endcanAccess
+                               @endcanAccess -->
                                @canAccess('roles.assignscreen_create')
                                <a href="{{ route('roles.assignscreen_create', $role->id) }}" title="Assign Screens"><button class="btn btn-warning btn-sm" type="button"><i aria-hidden="true" class="fa fa-tv"></i></button></a>
                                @endcanAccess

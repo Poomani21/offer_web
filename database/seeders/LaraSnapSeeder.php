@@ -237,9 +237,9 @@ class LaraSnapSeeder extends Seeder
         Setting::whereIn('name', ['site_name', 'site_logo', 'admin_email', 'date_format', 'date_time_format', 'time_format', 'entries_per_page'])->delete();
         
         $settings = [
-            ['name' => 'site_name','value' => 'LaraSnap'],
+            ['name' => 'site_name','value' => 'Offer Web'],
             ['name' => 'site_logo','value' => ''],
-            ['name' => 'admin_email','value' => 'admin@larasnap.com'],
+            ['name' => 'admin_email','value' => 'admin@admin.com'],
             ['name' => 'date_format','value' => 'd/m/Y'],
             ['name' => 'date_time_format','value' => 'd/m/Y  h:i A'],
             ['name' => 'time_format','value' => 'h:i:s A'],
