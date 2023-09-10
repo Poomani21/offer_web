@@ -22,8 +22,18 @@
                      @endcanAccess
                   </div>
                   <!-- list filters -->
-                  <div class="col-md-10 filters">
+                  <div class="col-md-12 filters">
                      @include('larasnap::list-filters.user')
+
+                       <select name="image_value" id="image_value" class="form-control">
+                        <option value="">select user</option>
+                        @foreach($all_users as $user)
+                     
+                        <option value="{{$user->user_id}}">{{$user->first_name}} {{$user->last_name}}</option>
+                        @endforeach
+                       </select>
+                     <button type="button" class="btn btn-warning" onclick="exportdata()" id="exportSubmitData"><i class="fa fa-download"></i></button>
+
                   </div>
                   <!-- list filters -->
                   <br> <br> 
@@ -103,3 +113,13 @@
 </div>
 <!-- Page Content End-->				  
 @endsection
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+    function exportdata() {
+        var image_value = $('#image_value').val();
+      
+
+        var url = "{{ route('image.image_export') }}?image_value=" + image_value  ;
+        window.location.href = url;
+    }
+</script>

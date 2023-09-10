@@ -6,6 +6,9 @@ use App\Models\Employee;
 use App\Models\EmployeeImages;
 use App\Models\Image;
 use App\Models\User;
+use Storage;
+use Response;
+
 use Illuminate\Http\Request;
 
 class ImageController extends Controller
@@ -54,4 +57,12 @@ class ImageController extends Controller
             return redirect()->back()->withSuccess(' Image deleted successfully.');
         
     }
+    public function downloadImage(Request $request)
+{
+
+  
+    dd($request->all());
+
+   
+}
 }

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Http\Requests\UserRequest;
 use App\Http\Services\UserService;
+use App\Models\UserProfile;
 use LaraSnap\LaravelAdmin\Traits\Role;
 use HasRoles;
 class UserController extends Controller
@@ -36,9 +37,10 @@ class UserController extends Controller
         setCurrentListPageURL('users');
         $filter_request = $this->userService->filterValue($request); //filter request
 		$roles          = $this->getAllRoles();
-		$users          = $this->userService->index($filter_request);
+        $users          = $this->userService->index($filter_request);
+$all_users=UserProfile::all();
 
-        return view('larasnap::users.index')->with(['users' => $users, 'roles' => $roles, 'filters' => $filter_request]);
+        return view('larasnap::users.index')->with(['users' => $users, 'roles' => $roles, 'filters' => $filter_request,'all_users'=>$all_users]);
     }
 
     /**

@@ -1,10 +1,10 @@
- @if(config('larasnap.module_list.user.sort_by'))
+ <!-- @if(config('larasnap.module_list.user.sort_by'))
    <select name="sort_by"  id="sort-by" class="form-control" onchange="filter(this.value)">
       @foreach (config('larasnap.module_list.user.sort_by') as $option)
       <option @if($filters['sort_by'] == $option['value']) selected @endif  value="{{ $option['value'] }}">{{ $option['label'] }}</option>
       @endforeach
    </select>
-   @endif				 
+   @endif				  -->
    @if(config('larasnap.module_list.user.filter.role'))
    <select name="user_role" id="role" class="form-control ml-10" onchange="filterByID(this)">
       <option value="all" >All Roles</option>
