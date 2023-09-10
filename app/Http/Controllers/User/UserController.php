@@ -61,6 +61,11 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {		
 		$user = $this->userService->store($request);
+        $data = User::find($user->id);
+        if($data){
+            $data->phone_number = $request->mobile_no;
+            $data->save();
+        }
         $user = $this->userService->assignRoleStore($request,$user->id);
         
 		return redirect()->route('users.index')->withSuccess('User successfully created.');

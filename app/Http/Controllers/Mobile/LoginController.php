@@ -27,9 +27,9 @@ class LoginController extends Controller
     
     public function login(Request $request)
     {
-        $credentials = request(['email', 'password']);
+        $credentials = request(['phone_number', 'password']);
         $credentials['status'] = 1;
-        $user = User::where('email',$request->email)->first();
+        $user = User::where('phone_number',$request->phone_number)->first();
         if(!$user) {
             return response()->json(['error' => 'Invalid User'], 401);
         }

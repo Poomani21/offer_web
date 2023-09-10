@@ -112,6 +112,7 @@ class UserService{
         // dd($request->all);
         
         $data['email']   = $request->email;
+        $data['phone_number']  = $request->mobile_no;
 		// $data = $request->except('password');
         $data['password']   = bcrypt("12345678");
         $data['created_by'] = Auth::id();
