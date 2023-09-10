@@ -12,7 +12,7 @@
       <div class="card shadow mb-4">
          <div class="card-body">
             <div class="card-body">
-               <a href="{{ route('employee.index') }}" title="Back to employee List" class="btn btn-warning btn-sm"><i aria-hidden="true" class="fa fa-arrow-left"></i> Back to employee List
+               <a href="{{ route('users.index') }}" title="Back to employee List" class="btn btn-warning btn-sm"><i aria-hidden="true" class="fa fa-arrow-left"></i> Back to employee List
                </a> 
                <br> <br> 
                <form method="POST" action="{{ route('image.store') }}"  enctype="multipart/form-data" class="form-horizontal" autocomplete="off">
