@@ -15,7 +15,7 @@ class ImageCollection extends JsonResource
      */
     public function toArray($request)
     {
-        $image = $this->image_name ? asset('storage/upload/employee_images/'.$this->image_name)  : "";
+        $image = $this->image_name ? asset('images/'.$this->image_name)  : "";
         return [
             'date' => $this->created_at,
             'user_photo' => $image,

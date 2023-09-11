@@ -28,10 +28,12 @@
                        <select name="image_value" id="image_value" class="form-control">
                         <option value="">select user</option>
                         @foreach($all_users as $user)
-                     
                         <option value="{{$user->user_id}}">{{$user->first_name}} {{$user->last_name}}</option>
                         @endforeach
                        </select>
+                       @error('image_value')
+							   <span class="text-danger">{{ $message }}</span>
+							   @enderror
                      <button type="button" class="btn btn-warning" onclick="exportdata()" id="exportSubmitData"><i class="fa fa-download"></i></button>
 
                   </div>

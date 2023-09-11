@@ -6,10 +6,12 @@ use App\Models\Employee;
 use App\Models\EmployeeImages;
 use App\Models\Image;
 use App\Models\User;
+use GuzzleHttp\Psr7\Response as Psr7Response;
 use Storage;
-use Response;
-
 use Illuminate\Http\Request;
+use Response;
+use Image as Images;
+use ZipArchive;
 
 class ImageController extends Controller
 {
@@ -30,21 +32,46 @@ class ImageController extends Controller
           try{
             if ($request->image != 'undefined') 
         {
-            $fileName = '';
-            if (! empty($request->image)) 
-            {
-                $fileName = $request->file('image')
-                ->getClientOriginalName();
-                $request->image->storeAs('public/upload/employee_images', $fileName);
+            if($request->hasFile('image')) {
+
+                $image = Images::make($request->file('image'));
+    
+    
+                $imageName = time().'-'.$request->file('image')->getClientOriginalName();
+    
+                $destinationPath = public_path('images/');
+    
+                
+                $employee_details = User::with('userProfile')->find($request->emp_id);
+                $details = $employee_details->userProfile->first_name .''.$employee_details->userProfile->first_name.''.
+                            $employee_details->phone_number.''.$employee_details->userProfile->agency_name.'/n'.''.
+                            $employee_details->userProfile->city;
+                $image->text($details, 120, 100, function($font) {  
+    
+                      $font->size(35);  
+    
+                      $font->color('#668cff');  
+    
+                      $font->align('center');  
+    
+                      $font->valign('bottom');  
+    
+                      $font->angle(90);  
+    
+                });  
+    
+                $image->save($destinationPath.$imageName);
                 $data = new Image();
-                $data->name = $fileName;
+                $data->name = $imageName;
                 $data->save();
+                $image = new EmployeeImages();
+                $image->employee_id = $request->emp_id;
+                $image->image_id = $data->id;
+                $image->image_name = $imageName;
+                $image->save(); 
+    
             }
-            $image = new EmployeeImages();
-            $image->employee_id = $request->emp_id;
-            $image->image_id = $data->id;
-            $image->image_name = $fileName;
-            $image->save();
+              
         }
         return redirect()->back()->withSuccess(' Image added successfully.');
           }catch (\Exception $e) {
@@ -58,11 +85,8 @@ class ImageController extends Controller
         
     }
     public function downloadImage(Request $request)
-{
+        {
+           return redirect()->back();
 
-  
-    dd($request->all());
-
-   
-}
+            }          
 }
