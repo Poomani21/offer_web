@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 use Response;
 use Image as Images;
 use ZipArchive;
+use File;
+
 
 class ImageController extends Controller
 {
@@ -27,17 +29,18 @@ class ImageController extends Controller
         }
     }
     public function store(Request $request)
-    {
+    {       
         $request->validate([
             'image' => 'required|image|mimes:jpeg,jpg,png,gif',
         ]);
         try {
             if ($request->image != 'undefined') {
                 if ($request->hasFile('image')) {
-                     
+                    $path = public_path().'/images/employee/' . $request->emp_id;
+                    File::makeDirectory($path, $mode = 0777, true, true);                     
                     $image = Images::make($request->file('image'))->resize(700, 700);
                     $imageName = time() . '-' . $request->file('image')->getClientOriginalName();
-                    $destinationPath = public_path('images/');
+                    $destinationPath = public_path().'/images/employee/' . $request->emp_id. '/';
                     $max_len     = 20;
                     $width       = 700;
                     $height      = 1300;
@@ -86,6 +89,33 @@ class ImageController extends Controller
     }
     public function downloadImage(Request $request)
     {
-        return redirect()->back();
+    return redirect()->back();
+
+    // $image_emp =[];
+    // $files_employee = EmployeeImages::where('employee_id',$request->image_value)->get();
+
+    // foreach($files_employee as $employee)
+    // {
+    //     $employee = \File::allfiles(public_path('images'.$employee->image_name));
+    //       array_push($image_emp,$employee);
+    // }
+           
+           
+    //     $zip = new ZipArchive;
+    //         $zipFileName = 'files.zip';
+    //         if ($zip->open(public_path($zipFileName), ZipArchive::CREATE) === TRUE) {
+
+    //             foreach ($image_emp as $file) {
+    //                 dd($file->latest);
+    //                 $fileInfo = pathinfo($file);
+    //                 $zip->addFile($file, $fileInfo['basename']);
+    //             }
+        
+    //             $zip->close();
+    //         }
+        
+    //         // Download the ZIP file
+    //         return response()->download(public_path($zipFileName));
+
     }
 }
