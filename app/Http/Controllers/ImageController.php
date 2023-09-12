@@ -34,16 +34,17 @@ class ImageController extends Controller
         try {
             if ($request->image != 'undefined') {
                 if ($request->hasFile('image')) {
-                    $image = Images::make($request->file('image'));
+                     
+                    $image = Images::make($request->file('image'))->resize(700, 700);
                     $imageName = time() . '-' . $request->file('image')->getClientOriginalName();
                     $destinationPath = public_path('images/');
                     $max_len     = 20;
-                    $width       = 600;
-                    $height      = 300;
+                    $width       = 700;
+                    $height      = 1300;
                     $center_x    = $width / 2;
                     $center_y    = $height / 2;
-                    $font_height = 20;
-                    $font_size   = 15;
+                    $font_height = 25;
+                    $font_size   = 35;
                     $employee_details = User::with('userProfile')->find($request->emp_id);
                     $details = $employee_details->userProfile->first_name . ',' .
                         $employee_details->phone_number . ',' . $employee_details->userProfile->agency_name . ',' . '' .
