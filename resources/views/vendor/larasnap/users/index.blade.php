@@ -92,6 +92,8 @@
                                  @canAccess('users.destroy')
                                      <a href="#" onclick="return individualDelete({{ $user->id }})" title="Delete User"><button class="btn btn-danger btn-sm" type="button"   @if($user->id === auth()->id()) disabled @endif><i aria-hidden="true" class="fa fa-trash"></i></button></a>
                                  @endcanAccess
+
+
                               </td>
                            </tr>
                            @empty
