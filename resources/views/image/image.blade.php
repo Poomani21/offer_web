@@ -42,7 +42,7 @@
 								<form id="department_deleteForm" action="{{route('image.destroy',$employeeImage->images->id)}}" method="GET" id="deleteForm">
                                    @csrf
                                     @method('GET')
-								<img src="{{ url('storage/upload/employee_images/' . $employeeImage->images->name) }}" width="300px" height="300px" alt="">
+								<img src="{{ url('/images/employee/'.$employeeImage->employee_id.'/'. $employeeImage->images->name) }}" width="300px" height="300px" alt="">
 								<span style="background-color: greenyellow;">{{date('M d,Y', strtotime($employeeImage->images->created_at))}}</span>
 								<a onclick="deleteModel_departments({{$employeeImage->images->id}})" title="Delete "><button data-toggle="modal" data-target="#small_departments" class="btn btn-danger btn-sm" type="button"><i aria-hidden="true" class="fa fa-trash"></i></button></a>
 								</form>

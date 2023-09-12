@@ -114,6 +114,7 @@ class LaraSnapSeeder extends Seeder
             ['name' => 'users.destroy','label' => 'User Delete', 'module_id' => $module2->id],
             ['name' => 'users.assignrole_create','label' => 'User Assign Role', 'module_id' => $module2->id],
             ['name' => 'imageupload','label' => 'User Image Upload', 'module_id' => $module2->id],
+            ['name' => 'image.image_export','label' => 'User Image Export', 'module_id' => $module2->id],
             ['name' => 'image.destroy','label' => 'User Image Delete', 'module_id' => $module2->id],
             ['name' => 'roles.index','label' => 'Role List', 'module_id' => $module3->id],
             ['name' => 'roles.create','label' => 'Role Create', 'module_id' => $module3->id],
