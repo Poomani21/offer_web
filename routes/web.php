@@ -199,7 +199,9 @@ Route::group(['namespace' => '\App\Http\Controllers','prefix' => 'admin', 'middl
     Route::post('/','ImageController@index')->name('image.filter');
     Route::post('store','ImageController@store')->name('image.store');
     Route::get('{image}/destroy','ImageController@destroy')->name('image.destroy');
-    Route::get('/export','ImageController@downloadImage')->name('image.image_export');
+    Route::get('{id}/export','ImageController@downloadImage')->name('image.image_export');
+    Route::get('/export_all','ImageController@downloadall')->name('image.image_export_all');
+
 
 
 });

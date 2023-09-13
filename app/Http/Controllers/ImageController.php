@@ -87,9 +87,10 @@ class ImageController extends Controller
         Image::find($id)->delete();
         return redirect()->back()->withSuccess(' Image deleted successfully.');
     }
-    public function downloadImage(Request $request)
+    public function downloadImage(Request $request,$id)
     {
-    return redirect()->back();
+        $image = EmployeeImages::find($id);
+        return response()->download(public_path('images/employee/'.$image->employee_id.'/'.$image->image_name));
 
     // $image_emp =[];
     // $files_employee = EmployeeImages::where('employee_id',$request->image_value)->get();
@@ -117,5 +118,8 @@ class ImageController extends Controller
     //         // Download the ZIP file
     //         return response()->download(public_path($zipFileName));
 
+    }
+    public function downloadall(Request $request){
+        return redirect()->back();
     }
 }

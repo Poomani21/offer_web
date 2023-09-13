@@ -123,7 +123,7 @@
         var image_value = $('#image_value').val();
       
 
-        var url = "{{ route('image.image_export') }}?image_value=" + image_value  ;
+        var url = "{{ route('image.image_export_all') }}?image_value=" + image_value  ;
         window.location.href = url;
     }
 </script>

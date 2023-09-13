@@ -38,7 +38,7 @@
 				  <div class="row">
 						<div class="col-md-12">
 							<div class="form-group">
-								@foreach($employeeImages as $employeeImage)
+								<!-- @foreach($employeeImages as $employeeImage)
 								<form id="department_deleteForm" action="{{route('image.destroy',$employeeImage->images->id)}}" method="GET" id="deleteForm">
                                    @csrf
                                     @method('GET')
@@ -46,11 +46,53 @@
 								<span style="background-color: greenyellow;">{{date('M d,Y', strtotime($employeeImage->images->created_at))}}</span>
 								<a onclick="deleteModel_departments({{$employeeImage->images->id}})" title="Delete "><button data-toggle="modal" data-target="#small_departments" class="btn btn-danger btn-sm" type="button"><i aria-hidden="true" class="fa fa-trash"></i></button></a>
 								</form>
-								@endforeach
+								@endforeach -->
 							</div>
 							
 						</div>
 				  </div>
+                  <div class="table-responsive">
+                <table class="table noExl" id="myTab">
+                    <thead>
+                        <tr>         
+
+                            <th>S.No</th>
+                            <th>Image</th>
+                            <th>Added Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @forelse($employeeImages as $i => $employeeImage)
+
+                        <tr>		
+                        
+                              <td>{{ ++$i }}</td>
+                              <td><img src="{{ url('/images/employee/'.$employeeImage->employee_id.'/'. $employeeImage->images->name) }}" width="80px" height="80px" alt=""></td>
+                              <td>{{date('M d,Y', strtotime($employeeImage->images->created_at))}}</td>                                                
+                              <td>
+                              <form id="department_deleteForm" action="{{route('image.destroy',$employeeImage->images->id)}}" method="GET" id="deleteForm">
+                                   @csrf
+                                    @method('GET')                                                                 
+                                    <a href="{{route('image.image_export',$employeeImage->id)}}" title="Image Download"><button class="btn btn-primary btn-sm" type="button"><i aria-hidden="true" class="fa fa-download"></i></button></a>
+                                    <a onclick="deleteModel_departments({{$employeeImage->images->id}})" title="Delete "><button data-toggle="modal" data-target="#small_departments" class="btn btn-danger btn-sm" type="button"><i aria-hidden="true" class="fa fa-trash"></i></button></a>
+                                </form>
+                              </td>
+
+                        </tr>
+
+                          @empty
+                           <tr>
+                              <td class="text-center" colspan="12">No Record found!</td>
+                           </tr>
+                           @endforelse
+
+                    </tbody>
+                </table>
+                <div class="pagination">
+
+                </div>
+            </div>
 				   
 		
              
