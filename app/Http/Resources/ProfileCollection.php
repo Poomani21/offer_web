@@ -27,6 +27,8 @@ class ProfileCollection extends JsonResource
             'state' => $this->userProfile ? $this->userProfile->state : " na ",
             'city' => $this->userProfile ? $this->userProfile->city : " na ",
             'pincode' => $this->userProfile ? $this->userProfile->pincode : " na ",
+            'agency_name' => $this->userProfile ? $this->userProfile->agency_name : " na ",
+            'emp_id' => $this->userProfile ? $this->userProfile->emp_id : " na ",
             'user_photo' => $user_image,
         ];
     }

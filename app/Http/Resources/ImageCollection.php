@@ -17,7 +17,7 @@ class ImageCollection extends JsonResource
     {
         $image = $this->image_name ? asset('/images/employee/'.$this->employee_id.'/'.$this->image_name)  : "";
         return [
-            'date' => $this->created_at,
+            'date' => date("Y-m-d", strtotime($this->created_at)),
             'user_photo' => $image,
         ];
     }
