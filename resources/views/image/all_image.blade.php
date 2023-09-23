@@ -28,7 +28,7 @@
                 <div class="card-body">
                     <br> <br>
                     <form method="POST" action="{{route('over_all_image.store')}}" enctype="multipart/form-data" class="form-horizontal" id="my_form" autocomplete="on">
-                    @method('POST')    
+                   
                     @csrf
 
                         <div class="row">                      
@@ -42,7 +42,12 @@
                                     @enderror
                                 </div>
                             </div>
-
+                            <div class="col-md-12 no-label">
+                                <div class="form-group"  style="float: right;">
+                                    <input type="submit" value="Save" class="btn btn-primary">
+                                </div>
+                            </div>
+                            </form>
                            
                             <div class="table-responsive">
                 <table class="table noExl" id="myTab">
@@ -86,13 +91,9 @@
             </div>
             
                         
-                            <div class="col-md-12 no-label">
-                                <div class="form-group"  style="float: right;">
-                                    <input type="submit" value="Save" class="btn btn-primary">
-                                </div>
-                            </div>
+                            
                         </div>
-                    </form>
+                   
                 </div>
             </div>
         </div>

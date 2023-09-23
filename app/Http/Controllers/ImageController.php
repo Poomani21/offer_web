@@ -132,7 +132,10 @@ class ImageController extends Controller
     public function all_store(Request $request)
     {
        
-
+        // dd("ki");
+        $request->validate([
+            'images' => 'required|image|mimes:jpeg,jpg,png,gif',
+        ]);
         $path = public_path('all_images/');
         !is_dir($path) &&
             mkdir($path, 0777, true);
