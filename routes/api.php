@@ -26,6 +26,8 @@ Route::middleware(['jwt.verify'])->group(function () {
 Route::post('user', 'App\Http\Controllers\Mobile\LoginController@me');
 Route::post('user_update', 'App\Http\Controllers\Mobile\LoginController@profileUpdate');
 Route::get('images','App\Http\Controllers\Mobile\ImagesController@index');
+Route::get('history','App\Http\Controllers\Mobile\HistoryController@index');
+Route::post('save_history','App\Http\Controllers\Mobile\HistoryController@store');
 
 });
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

@@ -180,6 +180,16 @@ class UserService{
             }
           
         }
+        else{
+            $emp_id = Userprofile::where('emp_id','LIKE','%T2G-'.$type[1].'-%')->latest()->first();
+            if($emp_id == null){
+                $userProfile->emp_id = "T2G-".$type[1]."-001";
+            }else{
+                $id_increment = substr($emp_id->emp_id,-3);
+                $value = sprintf("%03d",++$id_increment);
+                $userProfile->emp_id = "T2G-".$type[1]."-".$value;
+            }
+        }
         $userProfile->save();
 
 		return $user;
