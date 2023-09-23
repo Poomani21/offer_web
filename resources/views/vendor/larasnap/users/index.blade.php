@@ -77,7 +77,7 @@
                               </td>
                               <td>{{ $user->status_info }}</td>
                               <td>
-                                 <a href="{{ route('imageupload', $user->id) }}" title="Upload"><button class="btn btn-info btn-sm" type="button"><i aria-hidden="true" class="fa fa-image"></i></button></a>
+                                 <!-- <a href="{{ route('imageupload', $user->id) }}" title="Upload"><button class="btn btn-info btn-sm" type="button"><i aria-hidden="true" class="fa fa-image"></i></button></a> -->
                                  @canAccess('users.show')
                                  <a href="{{ route('users.show', $user->id) }}" title="View User"><button class="btn btn-info btn-sm" type="button"><i aria-hidden="true" class="fa fa-eye"></i></button></a>
                                  @endcanAccess
