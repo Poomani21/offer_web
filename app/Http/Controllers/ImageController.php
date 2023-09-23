@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AllImage;
 use App\Models\Employee;
 use App\Models\EmployeeImages;
 use App\Models\Image;
@@ -13,6 +14,7 @@ use Response;
 use Image as Images;
 use ZipArchive;
 use File;
+
 
 
 class ImageController extends Controller
@@ -121,5 +123,40 @@ class ImageController extends Controller
     }
     public function downloadall(Request $request){
         return redirect()->back();
+    }
+    public function index(Request $request)
+    {
+        $all_images=AllImage::get();
+        return view('image.all_image',compact('all_images'));
+    }
+    public function all_store(Request $request)
+    {
+       
+
+        $path = public_path('all_images/');
+        !is_dir($path) &&
+            mkdir($path, 0777, true);
+
+        $imageName = time() . '.' . $request->images->extension();
+        $request->images->move($path, $imageName);
+
+        $images       = new AllImage();
+        $images->images = $imageName;
+
+        $images->save();
+        return redirect()->route('image.index');
+    }
+
+    public function all_iamge_destroy(Request $request, $id)
+    {
+        $delete = AllImage::find($id);
+        $delete->delete();
+        return redirect()->route('image.index');
+    }
+
+    public function downloadAllImage(Request $request, $id)
+    {
+        $image = AllImage::find($id);
+        return response()->download(public_path('all_images/'.$image->images));
     }
 }

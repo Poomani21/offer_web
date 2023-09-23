@@ -194,16 +194,23 @@ Route::group(['namespace' => '\App\Http\Controllers','prefix' => 'admin', 'middl
 });
 /* Employee Routs ends*/
  /* Image Routs starts*/
- Route::group(['prefix' => 'image', 'exculde' => ['image.filter', 'image.store', 'image.update']], function(){
+ Route::group(['prefix' => 'image', 'exculde' => ['image.filter', 'image.store', 'image.update','over_all_image.store']], function(){
     Route::get('{image}/imageupload','ImageController@imageupload')->name('imageupload');
-    Route::post('/','ImageController@index')->name('image.filter');
     Route::post('store','ImageController@store')->name('image.store');
     Route::get('{image}/destroy','ImageController@destroy')->name('image.destroy');
     Route::get('{id}/export','ImageController@downloadImage')->name('image.image_export');
     Route::get('/export_all','ImageController@downloadall')->name('image.image_export_all');
 
+    Route::get('/','ImageController@index')->name('image.index');
+    Route::post('all_image_store','ImageController@all_store')->name('over_all_image.store');
+    Route::get('{image}/all_image_destroy','ImageController@all_iamge_destroy')->name('all_image.destroy');
+    Route::get('{id}/all_iamge_export','ImageController@downloadAllImage')->name('image.all_image_export');
 
 
+    
+    
+
+   
 });
 /* image Routs ends*/
     });
