@@ -206,7 +206,7 @@ Route::group(['namespace' => '\App\Http\Controllers','prefix' => 'admin', 'middl
     Route::get('/','ImageController@index')->name('image.index');
     Route::post('all_image_store','ImageController@all_store')->name('over_all_image.store');
     Route::get('{image}/all_image_destroy','ImageController@all_iamge_destroy')->name('all_image.destroy');
-    Route::get('{id}/all_iamge_export','ImageController@downloadAllImage')->name('image.all_image_export');
+    Route::get('{id}/all_image_export','ImageController@downloadAllImage')->name('image.all_image_export');
 
     Route::get('user_export','ImageController@export')->name('all_user_export');
 
