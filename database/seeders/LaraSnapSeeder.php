@@ -98,7 +98,11 @@ class LaraSnapSeeder extends Seeder
 
         // $module10 = new Module;
         // $module10->label = 'Documentation';
-        // $module10->save();         
+        // $module10->save();       
+        
+        $module10 = new Module;
+        $module10->label = 'Image Management';
+        $module10->save();    
         
         //Screen Seed & Role Screen Mapping Seed
         Screen::whereIn('name', ['dashboard', 'users.index', 'users.create', 'users.edit', 'users.show', 'users.destroy', 'users.assignrole_create', 'roles.index', 'roles.create', 'roles.edit', 'roles.destroy', 'roles.assignpermission_create', 'roles.assignscreen_create', 'permissions.index', 'permissions.create', 'permissions.edit', 'permissions.destroy', 'screens.index', 'screens.create', 'screens.edit', 'screens.destroy', 'screens.assignrole_create', 'modules.index', 'modules.create', 'modules.edit','modules.destroy', 'menus.index', 'menus.create', 'menus.edit', 'menus.destroy', 'menus.builder', 'settings.create', 'docs.index', 'docs.icons'])->delete();
@@ -116,7 +120,7 @@ class LaraSnapSeeder extends Seeder
             ['name' => 'imageupload','label' => 'User Image Upload', 'module_id' => $module2->id],
             ['name' => 'image.image_export','label' => 'User Image Export', 'module_id' => $module2->id],
             ['name' => 'image.destroy','label' => 'User Image Delete', 'module_id' => $module2->id],
-            ['name' => 'image.image_export_all','label' => 'User Image Download All', 'module_id' => $module2->id],
+            ['name' => 'image.image_export_all','label' => 'User Image Download All', 'module_id' => $module2->id],     
             ['name' => 'roles.index','label' => 'Role List', 'module_id' => $module3->id],
             ['name' => 'roles.create','label' => 'Role Create', 'module_id' => $module3->id],
             ['name' => 'roles.edit','label' => 'Role Edit', 'module_id' => $module3->id],
@@ -152,6 +156,10 @@ class LaraSnapSeeder extends Seeder
             ['name' => 'settings.create','label' => 'Settings', 'module_id' => $module9->id],
             // ['name' => 'docs.index','label' => 'Document', 'module_id' => $module10->id],
             // ['name' => 'docs.icons','label' => 'Icons', 'module_id' => $module10->id],
+            ['name' => 'image.index','label' => 'Image List', 'module_id' => $module10->id],
+            ['name' => 'all_image.destroy','label' => 'Image Delete', 'module_id' => $module10->id],
+            ['name' => 'image.all_image_export','label' => 'Image Download', 'module_id' => $module10->id],
+            ['name' => 'all_user_export','label' => 'User List Download', 'module_id' => $module10->id], 
         ];
         
         foreach ($screens as $screen){
@@ -229,8 +237,15 @@ class LaraSnapSeeder extends Seeder
             // $menuItem9->order  = 9;
             // $menuItem9->target = "_self";
             // $menuItem9->route  = "docs.index";
+
+            $menuItem9 = new MenuItem;
+            $menuItem9->title  = "Image Management";
+            $menuItem9->icon   = "fa-book";
+            $menuItem9->order  = 9;
+            $menuItem9->target = "_self";
+            $menuItem9->route  = "image.index";
             
-            $menu = $menu->items()->saveMany([$menuItem1, $menuItem2, $menuItem3, $menuItem5, $menuItem6, $menuItem8]);
+            $menu = $menu->items()->saveMany([$menuItem1, $menuItem2, $menuItem3, $menuItem5, $menuItem6, $menuItem8, $menuItem9]);
             // $menu = $menu->items()->saveMany([$menuItem1, $menuItem2, $menuItem3, $menuItem4, $menuItem5, $menuItem6, $menuItem7, $menuItem8, $menuItem9]);
 
         }
