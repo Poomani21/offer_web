@@ -52,4 +52,8 @@ class User extends \LaraSnap\LaravelAdmin\Models\User implements JWTSubject
     {
         return [];
     }
+
+    public function userProfile(){
+        return $this->hasOne(UserProfile::class, 'user_id', 'id');
+    }
 }

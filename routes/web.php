@@ -46,6 +46,8 @@ Route::group(['namespace' => '\LaraSnap\LaravelAdmin\Controllers','prefix' => 'a
             Route::delete('/',[App\Http\Controllers\User\UserController::class, 'bulkdestroy'])->name('users.bulkdestroy');
             Route::get('{user}/roles',[App\Http\Controllers\User\UserController::class, 'assignRoleCreate'])->name('users.assignrole_create');
             Route::post('{user}/roles',[App\Http\Controllers\User\UserController::class, 'assignRoleStore'])->name('users.assignrole_store');
+
+            
         });
         /** USER ROUTES **/
         
@@ -206,8 +208,8 @@ Route::group(['namespace' => '\App\Http\Controllers','prefix' => 'admin', 'middl
     Route::get('{image}/all_image_destroy','ImageController@all_iamge_destroy')->name('all_image.destroy');
     Route::get('{id}/all_iamge_export','ImageController@downloadAllImage')->name('image.all_image_export');
 
+    Route::get('user_export','ImageController@export')->name('all_user_export');
 
-    
     
 
    

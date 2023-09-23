@@ -25,7 +25,7 @@
                   <div class="col-md-12 filters">
                      @include('larasnap::list-filters.user')
 
-                       <select name="image_value" id="image_value" class="form-control">
+                       <!-- <select name="image_value" id="image_value" class="form-control">
                         <option value="">select user</option>
                         @foreach($all_users as $user)
                         <option value="{{$user->user_id}}">{{$user->first_name}} {{$user->last_name}}</option>
@@ -34,9 +34,11 @@
                        @error('image_value')
 							   <span class="text-danger">{{ $message }}</span>
 							   @enderror
-                     <button type="button" class="btn btn-warning" onclick="exportdata()" id="exportSubmitData"><i class="fa fa-download"></i></button>
+                     <button type="button" class="btn btn-warning" onclick="exportdata()" id="exportSubmitData"><i class="fa fa-download"></i></button> -->
+                     <a  href="{{route('all_user_export')}}" class="btn btn-warning"><i class="fa fa-download"></i></a>
 
                   </div>
+
                   <!-- list filters -->
                   <br> <br> 
                   <div class="table-responsive">
@@ -127,3 +129,4 @@
         window.location.href = url;
     }
 </script>
+

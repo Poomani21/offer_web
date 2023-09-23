@@ -14,6 +14,8 @@ use Response;
 use Image as Images;
 use ZipArchive;
 use File;
+use App\Exports\UserExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 
 
@@ -161,5 +163,12 @@ class ImageController extends Controller
     {
         $image = AllImage::find($id);
         return response()->download(public_path('all_images/'.$image->images));
+    }
+
+    public function export(Request $request)
+    {
+    
+        return Excel::download(new UserExport($request->all()), 'UserReports' . date('d-m-Y') . '.csv');
+
     }
 }

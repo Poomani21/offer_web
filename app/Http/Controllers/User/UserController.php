@@ -11,6 +11,8 @@ use App\Http\Services\UserService;
 use App\Models\UserProfile;
 use LaraSnap\LaravelAdmin\Traits\Role;
 use HasRoles;
+use Laravel\Ui\Presets\React;
+
 class UserController extends Controller
 {
 	use Role;
@@ -229,6 +231,8 @@ $all_users=UserProfile::all();
         $listPageURL = getPreviousListPageURL('users') ?? route('users.index'); 
 		return redirect( $listPageURL)->withSuccess('Roles assigned to user successfully.');
     }
+
+   
 }
 
 /**
