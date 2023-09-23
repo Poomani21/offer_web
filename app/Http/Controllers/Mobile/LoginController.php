@@ -31,13 +31,13 @@ class LoginController extends Controller
         $credentials['status'] = 1;
         $user = User::where('phone_number',$request->phone_number)->first();
         if(!$user) {
-            return response()->json(['error' => 'Invalid User'], 401);
+            return response()->json(['error' => 'Incorrect phone number'], 401);
         }
         if($user->status == 0) {
             return response()->json(['error' => 'Your account is inactive. Please contact admin'], 401);
         } 
         if (! $token = auth()->attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return response()->json(['error' => 'Incorrect password'], 401);
         }
         return $this->respondWithToken($token);
 
@@ -129,7 +129,7 @@ class LoginController extends Controller
             'message' => 'successfully login',
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth('api')->factory()->getTTL() * 60
+            'expires_in' => auth('api')->factory()->getTTL() * 60000000
         ]);
     }
 

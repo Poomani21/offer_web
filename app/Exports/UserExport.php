@@ -28,37 +28,31 @@ class UserExport implements FromCollection, WithHeadings, ShouldAutoSize, WithEv
     {
 
       
-            $user_details = User::with('userProfile')->OrderBy('id', 'DESC')->get();
-            dd($user_details);
-      
+        $user_details = User::with('userProfile')->whereNot('id','1')->OrderBy('id', 'DESC')->get();
 
 
         $UserReport = [];
         $temp = [];
-        $temp[] = 'S.No';
-        $temp[] = 'Type';
-       
-        $temp[] = 'Applied Date';
-        $temp[] = 'Comp-off Date';
-        $temp[] = 'Extra hour worked';
-        $temp[] = 'Summary of the tasks completed';
-        $temp[] = 'Status';
-        $temp[] = 'Status Reason';
+        $temp[] = 'S.no';
+        $temp[] = 'Employee name';
+        $temp[] = 'Email address';
+        $temp[] = 'Mobile number';
+        $temp[] = 'Agency name';
+        $temp[] = 'Emp id';
+        $temp[] = 'Location';
 
         array_push($UserReport, $temp);
         $s = 1;
         foreach ($user_details as $detail) {
+            $full_name = $detail->userProfile->first_name .''.$detail->userProfile->last_name;
             $temp = [];
             $temp['s.no'] = $s++;
-            $temp['type'] = 'Comp Off';
-          
-            $temp['created_at'] =  date(setting('date_format'), strtotime($detail->created_at));
-            $temp['date_of_extra_work'] =  date(setting('date_format'), strtotime($detail->date_of_extra_work));
-            $temp['comp_off_days'] = $detail->comp_off_days != '' ? ucwords($detail->comp_off_days) : '- NA -';
-            $temp['reason_for_extra_hours'] = $detail->reason_for_extra_hours;
-            $temp['comp_off_status'] = $detail->status == 1 ? 'Pending' : ($detail->status == 2 ? 'Approved' : 'Rejected');
-            $temp['status_reason'] = $detail->status_reason != '' ? ucwords($detail->status_reason) : '- NA -';
-
+            $temp['Employee aame'] = $full_name ?? '' ;
+            $temp['Email address'] =  $detail->email ?? '';
+            $temp['Mobile number'] =  $detail->phone_number ?? '';
+            $temp['Agency name'] =  $detail->userProfile->agency_name ?? '';
+            $temp['Emp id'] =  $detail->userProfile->emp_id ?? '';
+            $temp['Location'] =  $detail->userProfile->city ?? '';
             array_push($UserReport, $temp);
         }
         return collect($UserReport);

@@ -3,17 +3,21 @@
 namespace App\Http\Controllers\Mobile;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\HistoryCollection;
 use App\Http\Resources\ImageCollection;
+use App\Models\AllImage;
 use App\Models\EmployeeImages;
+use App\Models\Image;
+use App\Models\ImageShareHistory;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 class ImagesController extends Controller
 {
     public function index(){
-        $userId = auth()->user()->id;
-        $imagesList = EmployeeImages::with('images')->where('employee_id',$userId)->get();
+        $imagesList = AllImage::orderBy('id','desc')->get();
         if (count($imagesList) > 0) {
             $Images = ImageCollection::collection($imagesList);
             return response()->json(['message' => 'Images', 'images' => $Images]);

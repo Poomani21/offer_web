@@ -3,10 +3,12 @@
 namespace App\Http\Resources;
 
 // use Illuminate\Http\Resources\Json\ResourceCollection;
+
+use App\Models\AllImage;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Auth;
 
-class ImageCollection extends JsonResource
+class HistoryCollection extends JsonResource
 {
     /**
      * Transform the resource collection into an array.
@@ -16,12 +18,11 @@ class ImageCollection extends JsonResource
      */
     public function toArray($request)
     {
-        $image = asset('/all_images/'.$this->name) ? asset('/all_images/'.$this->name)  : "";
+        $image_name = AllImage::find($this->image_id);
+        $image = asset('/all_images/'.$image_name->images) ? asset('/all_images/'.$image_name->images)  : "";
         return [
-            'date' => date("Y-m-d", strtotime($this->created_at)),
-            'user_photo' => $image,
-            'image_id'=>$this->id,
-            'user_id'=>Auth::user()->id,
+            'shared_date' => date("Y-m-d", strtotime($this->created_at)),
+            'image' => $image,
         ];
     }
 }

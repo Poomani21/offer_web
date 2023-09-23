@@ -23,13 +23,13 @@ class ProfileCollection extends JsonResource
             'first_name' => $this->userProfile ? $this->userProfile->first_name : " na ",
             'last_name' => $this->userProfile ? $this->userProfile->last_name : " na ",
             'mobile_no' => $this->userProfile ? $this->userProfile->mobile_no : " na ",
-            'address' => $this->userProfile ? $this->userProfile->address : " na ",
-            'state' => $this->userProfile ? $this->userProfile->state : " na ",
+            // 'address' => $this->userProfile ? $this->userProfile->address : " na ",
+            // 'state' => $this->userProfile ? $this->userProfile->state : " na ",
             'city' => $this->userProfile ? $this->userProfile->city : " na ",
-            'pincode' => $this->userProfile ? $this->userProfile->pincode : " na ",
+            // 'pincode' => $this->userProfile ? $this->userProfile->pincode : " na ",
             'agency_name' => $this->userProfile ? $this->userProfile->agency_name : " na ",
             'emp_id' => $this->userProfile ? $this->userProfile->emp_id : " na ",
-            'user_photo' => $user_image,
+            // 'user_photo' => $user_image,
         ];
     }
 }
