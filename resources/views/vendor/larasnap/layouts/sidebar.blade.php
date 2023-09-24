@@ -3,7 +3,7 @@
    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
       <div class="sidebar-brand-text mx-3">
          @if(setting('site_logo'))
-            <img class="logo sidebar-logo" src="{{ storageUrl(config('larasnap.uploads.site_settings.path')) .'/'. setting('site_logo') }}" alt="logo" style="width:125px;">
+            <img class="logo sidebar-logo" src="{{ storageUrl(config('larasnap.uploads.site_settings.path')) .'/'. setting('site_logo') }}" alt="logo" style="width:100px; height: 50px;">
          @else
             {{ setting('site_name') }}
          @endif

@@ -18,6 +18,8 @@
                <form method="POST" action="{{ route('users.update', $user->id) }}"  enctype="multipart/form-data" class="form-horizontal" autocomplete="off">
 			   @csrf
 			   @method('PUT')
+
+		
                   <div class="row">
 					<div class="col-md-4">
 						<div class="form-group">
@@ -76,8 +78,8 @@
 							@enderror 								
 						</div>
 					</div>
-					
-					<div class="col-md-4">
+					<input type="hidden" name="roles" value="0">
+					<!-- <div class="col-md-4">
 						<div class="">
 							<label for="user_photo" class="control-label">Profile Picture</label> 
 							<input name="user_photo" type="file" id="user-photo" class="form-control" >
@@ -87,7 +89,7 @@
 						</div>
                         <small>Allowed File Formats: jpg, jpeg, png</small>
                         <p><img src="{{ $user->avatar }}" style="width: 50px;" alt="Prof Picture" ></p>
-					</div>
+					</div> -->
                     <div class="col-md-4 profile-status">
 					<div class="form-group">
 						<label class="form-control-label" for="input-address2">Status</label><br>

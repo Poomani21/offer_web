@@ -36,7 +36,7 @@ class UserRequest extends FormRequest
                 'required', 'min:3', 'alpha'
             ],
 			'last_name' => [
-                'required', 'min:3', 'alpha'
+                'required',
             ],
             'email' => [
                 'required', 'email:rfc,dns', Rule::unique((new $userModel)->getTable())->ignore($this->route()->user ?? null)
@@ -50,9 +50,9 @@ class UserRequest extends FormRequest
 			'city' => [
                 'required', 'alpha_spaces'
             ],
-			// 'roles' => [
-            //     'required',
-            // ],
+			'roles' => [
+                'required',
+            ],
 			// 'pincode' => [
             //     'required', 'size:'.$zipCodeSize,
             // ],ss
