@@ -18,7 +18,7 @@ class ImageCollection extends JsonResource
      */
     public function toArray($request)
     {
-        $image = asset('/all_images/'.$this->name) ? asset('/all_images/'.$this->name)  : "";
+        $image = asset('/all_images/'.$this->images) ? asset('/all_images/'.$this->images)  : "";
         $userProfileList = User::with('userProfile')->where('id',Auth::user()->id)->first();
         $full_name = $userProfileList->userProfile->first_name .''.$userProfileList->userProfile->last_name;
 

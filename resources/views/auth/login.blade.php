@@ -2,7 +2,7 @@
 @section('content')
 <div class="wrap-login100">
    <div class="login100-pic js-tilt" data-tilt>
-      <a href={{ url('/') }}><img src="{{ asset('vendor/larasnap-auth/images/img-01.png') }}" alt="IMG"></a>
+      <a href={{ url('/') }}><img src="{{ asset('website_image/T2G LOGO FOR WHATSAPP.jpeg') }}" alt="IMG"></a>
    </div>
    <form class="login100-form validate-form login-form" method="POST" action="{{ route('login') }}">
       @csrf
