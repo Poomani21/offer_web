@@ -48,6 +48,7 @@ class LaraSnapSeeder extends Seeder
             $role = new Role;
             $role->name = 'super-admin';
             $role->label = 'Director';
+            $role->shortform = 'DIR';
             $role->save();
         }
 

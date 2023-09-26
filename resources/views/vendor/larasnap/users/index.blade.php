@@ -54,6 +54,7 @@
                               <th>Actions</th>
                            </tr>
                         </thead>
+                        
                         <tbody>
                            @php
                               $superAdminRole = config('larasnap.superadmin_role');
@@ -65,7 +66,7 @@
                               @else
                                 <td><input type="checkbox" class="checkbox bulk-check" name="records[]" value="{{ $user->id }}" data-id="{{$user->id}}"></td>
                               @endif
-                              <td>{{ $user->id }}</td>
+                              <td>{{ isset($user->userProfile) ? $user->userProfile->emp_id : ''}}</td>
                               <td>{{ $user->full_name }}</td>
                               <td><a href="mailto:{{ $user->email }}">{{ $user->email }}</a></td>
                               <td>

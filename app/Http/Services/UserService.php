@@ -109,8 +109,7 @@ class UserService{
     }
 
 	public function store($request){
-        // dd($request->all);
-        
+      
         $data['email']   = $request->email;
         $data['phone_number']  = $request->mobile_no;
 		// $data = $request->except('password');
@@ -143,45 +142,7 @@ class UserService{
 
          $userProfile->agency_name = $request->agency_name;
          $type = explode(',',$request->roles);
-        if($type[1] =="Employee")
-        {
-            $emp_id = Userprofile::where('emp_id','LIKE','%T2G-EMP-%')->latest()->first();
-            if($emp_id == null){
-                $userProfile->emp_id = "T2G-EMP-001";
-            }else{
-                $id_increment = substr($emp_id->emp_id,-3);
-                $value = sprintf("%03d",++$id_increment);
-                $userProfile->emp_id = "T2G-EMP-".$value;
-            }
-            
-        }
-       
-        elseif($type[1] =="Distributer")
-        {
-            $emp_id = Userprofile::where('emp_id','LIKE','%T2G-DT-%')->latest()->first();
-            if($emp_id == null){
-                $userProfile->emp_id = "T2G-DT-001";
-            }else{
-                $id_increment = substr($emp_id->emp_id,-3);
-                $value = sprintf("%03d",++$id_increment);
-                $userProfile->emp_id = "T2G-DT-".$value;
-            }
-           
-        }
-        elseif($type[1] =="ModernTrade")
-        {
-            $emp_id = Userprofile::where('emp_id','LIKE','%T2G-MT-%')->latest()->first();
-            if($emp_id == null){
-                $userProfile->emp_id = "T2G-MT-001";
-            }else{
-                $id_increment = substr($emp_id->emp_id,-3);
-                $value = sprintf("%03d",++$id_increment);
-                $userProfile->emp_id = "T2G-MT-".$value;
-            }
-          
-        }
-        else{
-            $emp_id = Userprofile::where('emp_id','LIKE','%T2G-'.$type[1].'-%')->latest()->first();
+         $emp_id = Userprofile::where('emp_id','LIKE','%T2G-'.$type[1].'-%')->latest()->first();
             if($emp_id == null){
                 $userProfile->emp_id = "T2G-".$type[1]."-001";
             }else{
@@ -189,7 +150,53 @@ class UserService{
                 $value = sprintf("%03d",++$id_increment);
                 $userProfile->emp_id = "T2G-".$type[1]."-".$value;
             }
-        }
+        // if($type[1] =="Employee")
+        // {
+        //     $emp_id = Userprofile::where('emp_id','LIKE','%T2G-EMP-%')->latest()->first();
+        //     if($emp_id == null){
+        //         $userProfile->emp_id = "T2G-EMP-001";
+        //     }else{
+        //         $id_increment = substr($emp_id->emp_id,-3);
+        //         $value = sprintf("%03d",++$id_increment);
+        //         $userProfile->emp_id = "T2G-EMP-".$value;
+        //     }
+            
+        // }
+       
+        // elseif($type[1] =="Distributer")
+        // {
+        //     $emp_id = Userprofile::where('emp_id','LIKE','%T2G-DT-%')->latest()->first();
+        //     if($emp_id == null){
+        //         $userProfile->emp_id = "T2G-DT-001";
+        //     }else{
+        //         $id_increment = substr($emp_id->emp_id,-3);
+        //         $value = sprintf("%03d",++$id_increment);
+        //         $userProfile->emp_id = "T2G-DT-".$value;
+        //     }
+           
+        // }
+        // elseif($type[1] =="ModernTrade")
+        // {
+        //     $emp_id = Userprofile::where('emp_id','LIKE','%T2G-MT-%')->latest()->first();
+        //     if($emp_id == null){
+        //         $userProfile->emp_id = "T2G-MT-001";
+        //     }else{
+        //         $id_increment = substr($emp_id->emp_id,-3);
+        //         $value = sprintf("%03d",++$id_increment);
+        //         $userProfile->emp_id = "T2G-MT-".$value;
+        //     }
+          
+        // }
+        // else{
+        //     $emp_id = Userprofile::where('emp_id','LIKE','%T2G-'.$type[1].'-%')->latest()->first();
+        //     if($emp_id == null){
+        //         $userProfile->emp_id = "T2G-".$type[1]."-001";
+        //     }else{
+        //         $id_increment = substr($emp_id->emp_id,-3);
+        //         $value = sprintf("%03d",++$id_increment);
+        //         $userProfile->emp_id = "T2G-".$type[1]."-".$value;
+        //     }
+        // }
         $userProfile->save();
 
 		return $user;

@@ -18,6 +18,7 @@ class RoleSeeder extends Seeder
             $role = new Role;
             $role->name = 'employee';
             $role->label = 'Employee';
+            $role->shortform = 'EMP';
             $role->save();
         }
 
@@ -26,6 +27,7 @@ class RoleSeeder extends Seeder
             $role = new Role;
             $role->name = 'distributer';
             $role->label = 'Distributer';
+            $role->shortform = 'DT';
             $role->save();
         }
 
@@ -34,6 +36,24 @@ class RoleSeeder extends Seeder
             $role = new Role;
             $role->name = 'moderntrade';
             $role->label = 'ModernTrade';
+            $role->shortform = 'MT';
+            $role->save();
+        }
+
+        $role = Role::where('name', 'retailers')->first();
+        if(!$role){
+            $role = new Role;
+            $role->name = 'retailers';
+            $role->label = 'Retailers';
+            $role->shortform = 'RT';
+            $role->save();
+        }
+        $role = Role::where('name', 'dealers')->first();
+        if(!$role){
+            $role = new Role;
+            $role->name = 'dealers';
+            $role->label = 'Dealers';
+            $role->shortform = 'DL';
             $role->save();
         }
     }

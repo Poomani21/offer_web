@@ -17,6 +17,7 @@ class LarasnapCreateRolesTable extends Migration
             $table->bigIncrements('id');
 			$table->string('name');
             $table->string('label')->nullable();
+            $table->string('shortform')->nullable();
             $table->timestamps();
         });
     }

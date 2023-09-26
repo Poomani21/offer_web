@@ -60,17 +60,17 @@ Route::group(['namespace' => '\LaraSnap\LaravelAdmin\Controllers','prefix' => 'a
         
         /** ROLE ROUTES **/
         Route::group(['prefix' => 'roles', 'exculde' => ['roles.filter', 'roles.store', 'roles.update', 'roles.assignpermission_store', 'roles.assignscreen_store']], function(){
-            Route::get('/','RoleController@index')->name('roles.index');
-            Route::post('/','RoleController@index')->name('roles.filter');
-            Route::get('create','RoleController@create')->name('roles.create');
-            Route::post('create','RoleController@store')->name('roles.store');
-            Route::get('{role}/edit','RoleController@edit')->name('roles.edit');
-            Route::put('{role}','RoleController@update')->name('roles.update');
-            Route::delete('{role}','RoleController@destroy')->name('roles.destroy');
-            Route::get('{role}/permissions','RoleController@assignPermissionCreate')->name('roles.assignpermission_create');
-            Route::post('{role}/permissions','RoleController@assignPermissionStore')->name('roles.assignpermission_store');
-            Route::get('{role}/screens','RoleController@assignScreenCreate')->name('roles.assignscreen_create');
-            Route::post('{role}/screens','RoleController@assignScreenStore')->name('roles.assignscreen_store');
+            Route::get('/',[App\Http\Controllers\RoleController::class,'index'])->name('roles.index');
+            Route::post('/',[App\Http\Controllers\RoleController::class,'index'])->name('roles.filter');
+            Route::get('create',[App\Http\Controllers\RoleController::class,'create'])->name('roles.create');
+            Route::post('create',[App\Http\Controllers\RoleController::class,'store'])->name('roles.store');
+            Route::get('{role}/edit',[App\Http\Controllers\RoleController::class,'edit'])->name('roles.edit');
+            Route::put('{role}',[App\Http\Controllers\RoleController::class,'update'])->name('roles.update');
+            Route::delete('{role}',[App\Http\Controllers\RoleController::class,'destroy'])->name('roles.destroy');
+            Route::get('{role}/permissions',[App\Http\Controllers\RoleController::class,'assignPermissionCreate'])->name('roles.assignpermission_create');
+            Route::post('{role}/permissions',[App\Http\Controllers\RoleController::class,'assignPermissionStore'])->name('roles.assignpermission_store');
+            Route::get('{role}/screens',[App\Http\Controllers\RoleController::class,'assignScreenCreate'])->name('roles.assignscreen_create');
+            Route::post('{role}/screens',[App\Http\Controllers\RoleController::class,'assignScreenStore'])->name('roles.assignscreen_store');
         });
         /** ROLE ROUTES **/	
         

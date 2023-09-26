@@ -80,8 +80,8 @@
 									<label for="roles" class="control-label">Type<small class="text-danger required">*</small></label>
 									<select id="roles" name="roles" class="form-control">
 										<option value="">Select Type</option>
-										@foreach($roles as $name => $id)
-										<option value="{{ $id}},{{ $name}}">{{ $name }}</option>
+										@foreach($roles as $name )
+										<option value="{{ $name->id}},{{ $name->shortform}}">{{ $name->label }}</option>
 										@endforeach
 									</select>
 									@error('roles')

@@ -29,6 +29,15 @@
                      </div>
                      <div class="col-md-12">
                         <div class="form-group">
+                           <label for="shortform" class="control-label">Shotform(This will be used in employee id)<small class="text-danger required">*</small></label> 
+                           <input name="shortform" type="text" id="shortform" class="form-control" value="{{ old('shortform') }}">
+                           @error('shortform')
+                           <span class="text-danger">{{ $message }}</span>
+                           @enderror 							
+                        </div>
+                     </div>
+                     <div class="col-md-12">
+                        <div class="form-group">
                            <label for="label" class="control-label">Label<small class="text-danger required">*</small></label> 
                            <input name="label" type="text" id="label" class="form-control" value="{{ old('label') }}">
                            @error('label')

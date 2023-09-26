@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Http\Requests\UserRequest;
 use App\Http\Services\UserService;
+use App\Models\Role as ModelsRole;
 use App\Models\UserProfile;
 use LaraSnap\LaravelAdmin\Traits\Role;
 use HasRoles;
@@ -52,7 +53,8 @@ $all_users=UserProfile::all();
      */
     public function create()
     {
-        $roles  = $this->getAllRoles();
+        $roles  = ModelsRole::get();
+        // dd($roles);
         return view('larasnap::users.create',compact('roles'));
     }
 

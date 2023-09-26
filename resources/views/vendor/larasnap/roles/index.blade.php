@@ -32,15 +32,18 @@
                      <thead>
                         <tr>
                            <th>ID</th>
+                           <th>Title</th>
                            <th>Name(Slug)</th>
                            <th>Label</th>
                            <th>Actions</th>
                         </tr>
                      </thead>
                      <tbody>
+                      
 					@forelse($roles as $role)	
                         <tr>
                            <td>{{ $role->id }}</td>
+                           <td>{{ $role->shortform }}</td>
                            <td>{{ $role->name }}</td>
                            <td>{{ $role->label }}</td>
                            <td>
