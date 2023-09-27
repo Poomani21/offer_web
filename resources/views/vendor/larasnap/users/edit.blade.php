@@ -78,7 +78,8 @@
 							@enderror 								
 						</div>
 					</div>
-					<input type="hidden" name="roles" value="0">
+					<input type="hidden" name="roles" value="{{$user->roles[0]->id ?? ''}}">
+					<input type="hidden" name="type" value="edit">
 					<!-- <div class="col-md-4">
 						<div class="">
 							<label for="user_photo" class="control-label">Profile Picture</label> 

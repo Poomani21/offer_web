@@ -81,7 +81,7 @@
 									<select id="roles" name="roles" class="form-control">
 										<option value="">Select Type</option>
 										@foreach($roles as $name )
-										<option value="{{ $name->id}},{{ $name->shortform}}">{{ $name->label }}</option>
+										<option value="{{ $name->id}},{{ $name->shortform}}" @if(old('roles' ?? '' )==$name->id.','.$name->shortform ) selected @endif>{{ $name->label }}</option>
 										@endforeach
 									</select>
 									@error('roles')

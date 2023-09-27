@@ -30,10 +30,11 @@ class UserRequest extends FormRequest
     
     $zipCodeSize = config('larasnap.module_list.user.zip_code_size') ?? 5;
 	$userModel = config('larasnap.user_model_namespace');
-    
+    if(isset(request()->roles)){
+    if(request()->roles[0] == '2'){
         return [
             'first_name' => [
-                'required', 'min:3', 'alpha'
+                'required', 'min:3', 
             ],
 			'last_name' => [
                 'required',
@@ -59,13 +60,200 @@ class UserRequest extends FormRequest
 			'user_photo' => [
                 'nullable','mimes:jpg,jpeg,png','max:1024'
             ],
-            'agency_name'=> [
-                'required'
-            ],
+            // 'agency_name'=> [
+            //     'required'
+            // ],
             // 'roles'=>[
             //     'required'
             // ]
         ];
+    }else{
+        if(request()->type == 'edit'){
+            if(request()->roles == '2'){
+                return [
+                    'first_name' => [
+                        'required', 'min:3', 
+                    ],
+                    'last_name' => [
+                        'required',
+                    ],
+                    'email' => [
+                        'required', 'email:rfc,dns', Rule::unique((new $userModel)->getTable())->ignore($this->route()->user ?? null)
+                    ],
+                    'mobile_no' => [
+                        'required','numeric','digits:10','regex:/^[1-9]{1}[0-9]+/', 'unique:userprofiles,mobile_no,'.$this->route()->user.',user_id'
+                    ],
+                    // 'address' => [
+                    //     'required'
+                    // ],
+                    'city' => [
+                        'required', 'alpha_spaces'
+                    ],
+                    'roles' => [
+                        'required',
+                    ],
+                    // 'pincode' => [
+                    //     'required', 'size:'.$zipCodeSize,
+                    // ],ss
+                    'user_photo' => [
+                        'nullable','mimes:jpg,jpeg,png','max:1024'
+                    ],
+                    // 'agency_name'=> [
+                    //     'required'
+                    // ],
+                    // 'roles'=>[
+                    //     'required'
+                    // ]
+                ];
+            }else{
+                return [
+                    'first_name' => [
+                        'required', 'min:3', 
+                    ],
+                    'last_name' => [
+                        'required',
+                    ],
+                    'email' => [
+                        'required', 'email:rfc,dns', Rule::unique((new $userModel)->getTable())->ignore($this->route()->user ?? null)
+                    ],
+                    'mobile_no' => [
+                        'required','numeric','digits:10','regex:/^[1-9]{1}[0-9]+/', 'unique:userprofiles,mobile_no,'.$this->route()->user.',user_id'
+                    ],
+                    // 'address' => [
+                    //     'required'
+                    // ],
+                    'city' => [
+                        'required', 'alpha_spaces'
+                    ],
+                    'roles' => [
+                        'required',
+                    ],
+                    // 'pincode' => [
+                    //     'required', 'size:'.$zipCodeSize,
+                    // ],ss
+                    'user_photo' => [
+                        'nullable','mimes:jpg,jpeg,png','max:1024'
+                    ],
+                    'agency_name'=> [
+                        'required'
+                    ],
+                    // 'roles'=>[
+                    //     'required'
+                    // ]
+                ];
+            }
+            return [
+                'first_name' => [
+                    'required', 'min:3', 
+                ],
+                'last_name' => [
+                    'required',
+                ],
+                'email' => [
+                    'required', 'email:rfc,dns', Rule::unique((new $userModel)->getTable())->ignore($this->route()->user ?? null)
+                ],
+                'mobile_no' => [
+                    'required','numeric','digits:10','regex:/^[1-9]{1}[0-9]+/', 'unique:userprofiles,mobile_no,'.$this->route()->user.',user_id'
+                ],
+                // 'address' => [
+                //     'required'
+                // ],
+                'city' => [
+                    'required', 'alpha_spaces'
+                ],
+                'roles' => [
+                    'required',
+                ],
+                // 'pincode' => [
+                //     'required', 'size:'.$zipCodeSize,
+                // ],ss
+                'user_photo' => [
+                    'nullable','mimes:jpg,jpeg,png','max:1024'
+                ],
+                // 'agency_name'=> [
+                //     'required'
+                // ],
+                // 'roles'=>[
+                //     'required'
+                // ]
+            ];
+        }else{
+            return [
+                'first_name' => [
+                    'required', 'min:3', 
+                ],
+                'last_name' => [
+                    'required',
+                ],
+                'email' => [
+                    'required', 'email:rfc,dns', Rule::unique((new $userModel)->getTable())->ignore($this->route()->user ?? null)
+                ],
+                'mobile_no' => [
+                    'required','numeric','digits:10','regex:/^[1-9]{1}[0-9]+/', 'unique:userprofiles,mobile_no,'.$this->route()->user.',user_id'
+                ],
+                // 'address' => [
+                //     'required'
+                // ],
+                'city' => [
+                    'required', 'alpha_spaces'
+                ],
+                'roles' => [
+                    'required',
+                ],
+                // 'pincode' => [
+                //     'required', 'size:'.$zipCodeSize,
+                // ],ss
+                'user_photo' => [
+                    'nullable','mimes:jpg,jpeg,png','max:1024'
+                ],
+                'agency_name'=> [
+                    'required'
+                ],
+                // 'roles'=>[
+                //     'required'
+                // ]
+            ];
+        }
+        
+    }
+}else{
+    return [
+        'first_name' => [
+            'required', 'min:3', 
+        ],
+        'last_name' => [
+            'required',
+        ],
+        'email' => [
+            'required', 'email:rfc,dns', Rule::unique((new $userModel)->getTable())->ignore($this->route()->user ?? null)
+        ],
+        'mobile_no' => [
+            'required','numeric','digits:10','regex:/^[1-9]{1}[0-9]+/', 'unique:userprofiles,mobile_no,'.$this->route()->user.',user_id'
+        ],
+        // 'address' => [
+        //     'required'
+        // ],
+        'city' => [
+            'required', 'alpha_spaces'
+        ],
+        'roles' => [
+            'required',
+        ],
+        // 'pincode' => [
+        //     'required', 'size:'.$zipCodeSize,
+        // ],ss
+        'user_photo' => [
+            'nullable','mimes:jpg,jpeg,png','max:1024'
+        ],
+        'agency_name'=> [
+            'required'
+        ],
+        // 'roles'=>[
+        //     'required'
+        // ]
+    ];
+}
+       
     }
     
     // public function withValidator(Validator $validator){
