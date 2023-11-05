@@ -149,6 +149,12 @@ class ImageController extends Controller
         $images->images = $imageName;
 
         $images->save();
+
+
+        if (!empty($imageName)) {   
+            
+            $this->sendPushNotification($request);
+        }
         return redirect()->route('image.index');
     }
 
@@ -171,4 +177,43 @@ class ImageController extends Controller
         return Excel::download(new UserExport($request->all()), 'UserReports' . date('d-m-Y') . '.csv');
 
     }
+
+    public function sendPushNotification($request)
+    {
+
+
+       // $notification = Notification::all();
+            $topicName = "TTG-Notification";
+            
+             $SERVER_API_KEY = "AAAACJHgVek:APA91bEU5Del4VGzLnCTrqn0nIo5bx3roS3ZCFyqLQ43Uc-1SWP0ZvvW1Z55nGZlaChM2tjwZudQG0IaHkCvVxbpxa-4DYBR3bMj8O5qK2V9uNaJD6nFFvVtvLVc73Qt_WwkaGFJ1X8m";
+                
+
+            //  dd($request->all());
+
+                $data = [
+                    'to' => '/topics/'.$topicName,
+                    "notification" => [
+                        "title" => "sample test",
+                        "body" => "sample test",
+                    ]
+                ];
+                $dataString = json_encode($data);
+
+                $headers = [
+                    'Authorization: key=' . $SERVER_API_KEY,
+                    'Content-Type: application/json',
+                ];
+
+                $ch = curl_init();
+
+                curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
+                curl_setopt($ch, CURLOPT_POST, true);
+                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+            
+                $response = curl_exec($ch);
+            
+        }
 }
