@@ -153,9 +153,13 @@ Route::group(['namespace' => '\LaraSnap\LaravelAdmin\Controllers','prefix' => 'a
         /** CATEGORY ROUTES **/
         
         /** SETTING ROUTES **/
+        // Route::group(['prefix' => 'settings', 'exculde' => ['settings.store']], function(){
+        //     Route::get('/','SiteSettingController@create')->name('settings.create');
+        //     Route::post('/','SiteSettingController@store')->name('settings.store');
+        // });	
         Route::group(['prefix' => 'settings', 'exculde' => ['settings.store']], function(){
-            Route::get('/','SiteSettingController@create')->name('settings.create');
-            Route::post('/','SiteSettingController@store')->name('settings.store');
+            Route::get('/',[App\Http\Controllers\SiteSettingController::class,'create'] )->name('settings.create');
+            Route::post('/',[App\Http\Controllers\SiteSettingController::class,'store'] )->name('settings.store');
         });	
         /** SETTING ROUTES **/
             
